@@ -1,0 +1,66 @@
+@startuml 08_sequence_diagram
+
+participant Provider << (C,#ADD1B2) job/console >>
+
+queue Queue as queue << (C,#ADD1B2) Azure Service Bus >>
+participant Counter << (C,#ADD1B2) worker >>
+
+collections Buffer as buf << (I,#ADD1B2) test >>
+database Database as db << (D,#ADD1B2) MongoDB >>
+
+participant API << (C,#ADD1B2) web API >>
+    
+
+actor Usuário as user
+
+== Recepção dos Votos ==
+group Provider
+autonumber 1.1
+note over Provider: Início do processo
+Provider->queue: Início da Votação\n[id_votacao,\n nome,\n candidatos,\n eleitores]
+note over Provider: Período da votação
+loop Até o tempo limite da votação
+    Provider->queue: Voto\n[id_votacao,\n id_eleitor,\n id_candidato]        
+end
+note over Provider: Fim do processo
+Provider->>queue: Fim da Votação\n[id_votacao]
+end 
+== Contagem dos Votos ==
+group Contador
+  autonumber 2.1  
+  loop
+        queue->>Counter: Recebe\nmensagem
+        note over Counter: Identificar tipo da mensagem
+        autonumber 2.2.1
+        alt Início da Votação
+            Counter->buf: Inicializa votação para\n id_votacao + definição\n dos candidatos
+            note over buf: Início da votação\ncom zero votos
+            buf->db: Registra início\nda votação
+        else Fim da Votação
+            Counter->buf: Finaliza buffer de\n votação para\n o id_votacao
+            note over buf: Totaliza votação
+
+            buf->db: Persiste votação no\nbanco de dados
+        else Voto
+            alt Buffer de votação está inicalizado
+                Counter->>buf: Registra voto            
+            end
+            alt A cada x votos
+                note over buf: Subtotaliza votação
+                buf->>db: Registra resultados\nparciais para\no id_votacao
+            end
+        end
+
+    end
+end
+== Apresentação dos Resultados ==
+group API
+    autonumber 3.1
+    user->API: GET /votacao/{id_votacao}
+    activate API
+    API->db: Query
+    db->API: Results
+    API->user: Response
+    deactivate API
+end
+@enduml

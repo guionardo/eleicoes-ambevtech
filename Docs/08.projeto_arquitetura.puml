@@ -1,0 +1,28 @@
+@startuml 08_projeto_arquitetura
+
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+
+title Projeto de Apuração de Votos
+
+
+
+Container(provider,"Provider","job/console","Alimenta o processo de votação")
+Container(counter,"Counter","worker","Efetua a contagem dos votos de uma eleição")
+Container(api,"Frontend","api","Exposição dos dados da eleição")
+
+SystemQueue(queue,"Fila","Azure Service Bus")
+SystemDb(db,"Database","MongoDB")
+
+Rel(provider,queue,"Inicia votação")
+Rel(provider,queue,"Registra votos")
+Rel(provider,queue,"Finaliza votação")
+Rel(queue,counter,"Consome mensagens\nda votação")
+Rel(counter,db,"Registra\nresultado\nparcial")
+Rel(counter,db,"Registra\ntotalização")
+Rel(api,db,"Consulta")
+
+
+
+
+@enduml
