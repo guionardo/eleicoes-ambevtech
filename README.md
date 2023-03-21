@@ -1,5 +1,7 @@
 # Projeto: Aplicação de Apuração de Votos
 
+[![.NET](https://github.com/guionardo/eleicoes-ambevtech/actions/workflows/dotnet.yml/badge.svg)](https://github.com/guionardo/eleicoes-ambevtech/actions/workflows/dotnet.yml)
+
 Para controlar os dados de uma eleição vamos desenvolver um projeto de microsserviços para a coleta, processamento e apresentação de resultados.
 
 ## Domínio
