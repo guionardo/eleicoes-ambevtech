@@ -33,13 +33,13 @@ A apresentação dos dados da eleição serão feitas por uma API com os seguint
 
 ```json
 {
-    "status":"...",
+    "status":"...", // "não iniciada", "iniciada", "em apuração", "finalizada"
     "resultados":[
         {"id_candidato":0,"nome":"","votos":0}
     ],
     "classificacao":{
-        "primeiro":{"id_candidato":0,"nome"."votos":0},
-        "segundo":{"id_candidato":0,"nome"."votos":0}
+        "primeiro":{"id_candidato":0,"nome":"","votos":0},
+        "segundo":{"id_candidato":0,"nome":"","votos":0}
     },
     "brancos_nulos": 0,
     "eleitores": {
@@ -69,7 +69,7 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
             "id":0,
             "nome":""
         }],
-    "eleitors":[
+    "eleitores":[
         {
             "id":0,
             "nome":""
