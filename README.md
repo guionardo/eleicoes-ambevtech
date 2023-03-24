@@ -115,6 +115,28 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
 }
 ```
 
+### Resultado
+
+* id_votacao
+* id_candidato_1
+* qtd_votos_candidato_1
+* id_candidato_2
+* qtd_votos_candidato_2
+* qtd_votos_total
+* qtd_votos_nulos_brancos
+
+```json
+{
+    "id_votacao": 0,
+    "id_candidato_1": 0,
+    "qtd_votos_candidato_1": 0,
+    "id_candidato_2": 0,
+    "qtd_votos_candidato_2": 0,
+    "qtd_votos_total": 0,
+    "qtd_votos_nulos_brancos": 0
+}
+```
+
 ## Mensagens
 
 ### Início da votação
@@ -131,3 +153,31 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
 
 * header -> tipo=voto
 * conteúdo -> Voto (json)
+
+## Tarefas
+
+- [ ] Implementação das entidades do domínio
+    - [x] Votação
+    - [ ] Candidato
+    - [ ] Eleitor
+    - [x] Voto
+    - [ ] Resultado
+- [x] Implementação das mensagens
+    - [x] Início da votação
+    - [x] Fim da votação
+    - [x] Voto
+- [ ] Configurações da aplicação
+    - [ ] Conexão com o broker de mensageria
+    - [ ] Conexão com o banco de dados
+- [ ] Implementação do Provider
+    - [ ] Registro dos candidatos - LEITURA A PARTIR DE UM CSV
+    - [ ] Registro dos eleitores - LEITURA A PARTIR DE UM CSV
+    - [ ] Registro da votação - LEITURA A PARTIR DE UM CSV
+    - [ ] Envio da mensagem de início da votação
+    - [ ] Geração de votos aleatórios - Número de votos = Número de eleitores com uma variação de 5% pra mais ou pra menos
+        - Sugestão: Usar um generator (yield)
+    - [ ] Envio dos votos
+    - [ ] Envio da mensagem de final da votação
+
+
+

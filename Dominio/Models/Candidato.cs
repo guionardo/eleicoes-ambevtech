@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio.Models
+﻿namespace Dominio.Models
 {
-    public record Candidato(int Id, string Nome);
+    public record Candidato
+    {
+
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+
+        public Candidato(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
+    }
 
 }

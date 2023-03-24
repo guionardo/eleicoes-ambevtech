@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace Dominio.Models
 {
-    public record Eleitor(int Id, string Nome);
+    public record Eleitor
+    {
+        public int Id { get; private set; }
+        public string Nome { get; private set; }
+
+        public Eleitor(int id, string nome)
+        {
+            Id = id;
+            Nome = nome;
+        }
+    }
 
 }
