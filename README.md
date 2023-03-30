@@ -158,7 +158,7 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
 
 - [ ] Implementação das entidades do domínio
     - [x] Votação
-    - [ ] Candidato
+    - [x] Candidato
     - [ ] Eleitor
     - [x] Voto
     - [ ] Resultado
