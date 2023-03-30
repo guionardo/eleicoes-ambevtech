@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dominio.Models
+﻿namespace Dominio.Models
 {
     public record Eleitor
     {
         public int Id { get; private set; }
         public string Nome { get; private set; }
 
-        public Eleitor(int id, string nome)
+        public Eleitor(int idEleitor, string nome)
         {
-            Id = id;
+            if (idEleitor <= 0)
+                throw new ArgumentException("Id do eleitor deve ser um inteiro positivo", nameof(idEleitor));
+
+            Id = idEleitor;
+
+            if (string.IsNullOrWhiteSpace(nome))
+                throw new ArgumentException("Nome do eleitor não deve ser vazio", nameof(nome));
+
             Nome = nome;
         }
     }
