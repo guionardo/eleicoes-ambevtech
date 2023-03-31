@@ -16,9 +16,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{02764A42-21D8-4183-9A35-DAD77E9D74EC}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		Docs\sample_candidatos.csv = Docs\sample_candidatos.csv
+		sample_eleitores.csv = sample_eleitores.csv
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testes", "Testes\Testes.csproj", "{2C2A72AA-2EB3-475A-8EDF-9268E735BB20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testes", "Testes\Testes.csproj", "{2C2A72AA-2EB3-475A-8EDF-9268E735BB20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
