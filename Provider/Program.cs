@@ -15,3 +15,4 @@ var candidatos = FakerEntities.Candidatos(5);
 var eleitores = FakerEntities.Eleitores(1000);
 
 var votacao = new Votacao(1, "Eleição para head da torre de vendas", candidatos, eleitores);
+
