@@ -156,7 +156,7 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
 
 ## Tarefas
 
-- [ ] Implementação das entidades do domínio
+- [x] Implementação das entidades do domínio
     - [x] Votação
     - [x] Candidato
     - [x] Eleitor
@@ -166,9 +166,12 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
     - [x] Início da votação
     - [x] Fim da votação
     - [x] Voto
-- [ ] Configurações da aplicação
-    - [ ] Conexão com o broker de mensageria
-    - [ ] Conexão com o banco de dados
+- [x] Configurações da aplicação
+    - [x] Conexão com o broker de mensageria
+    - [x] Conexão com o banco de dados
+- [ ] Componentes externos
+    - [ ] Broker de mensageria
+    - [ ] Banco de dados
 - [ ] Implementação do Provider
     - [ ] Registro dos candidatos - LEITURA A PARTIR DE UM CSV
     - [ ] Registro dos eleitores - LEITURA A PARTIR DE UM CSV
