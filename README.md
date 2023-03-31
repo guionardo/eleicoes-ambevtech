@@ -161,7 +161,7 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
     - [x] Candidato
     - [x] Eleitor
     - [x] Voto
-    - [ ] Resultado
+    - [x] Resultado
 - [x] Implementação das mensagens
     - [x] Início da votação
     - [x] Fim da votação
