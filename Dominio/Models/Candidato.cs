@@ -1,4 +1,6 @@
-﻿namespace Dominio.Models
+﻿using SharedResources.Validacoes;
+
+namespace Dominio.Models
 {
     public record Candidato
     {
@@ -8,14 +10,10 @@
 
         public Candidato(int idCandidato, string nome)
         {
-            if (idCandidato <= 0)
-                throw new ArgumentException("Id do candidato votação deve ser um inteiro positivo", nameof(idCandidato));
+            ModelValidations.ThrowForNotPositiveNumber(idCandidato, "Id do candidato");
+            ModelValidations.ThrowForEmptyString(nome, "Nome do candidato");
 
             Id = idCandidato;
-
-            if (string.IsNullOrWhiteSpace(nome))
-                throw new ArgumentException("Nome do candidato não deve ser vazio", nameof(nome));
-
             Nome = nome;
         }
     }
