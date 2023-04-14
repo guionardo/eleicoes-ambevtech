@@ -15,7 +15,7 @@ public static class CandidatoPopulacaoCsvParser
 
         var reader = new StreamReader(stream);
         using var csvReader = new CsvReader(reader, csvConfig);
-        csvReader.Context.RegisterClassMap<Candidato>();
+        csvReader.Context.RegisterClassMap<Candidato_>();
         var isFirstRow = true;
         while (csvReader.Read())
         {
@@ -30,9 +30,9 @@ public static class CandidatoPopulacaoCsvParser
     }
 }
 
-public sealed class Candidato : ClassMap<CandidatoPopulacaoDeDados>
+public sealed class Candidato_ : ClassMap<CandidatoPopulacaoDeDados>
 {
-    public Candidato()
+    public Candidato_()
     {
         AutoMap(CultureInfo.InvariantCulture);
         Map(m => m.Id).NameIndex(0);
