@@ -2,11 +2,10 @@
 
 /// <summary>
 /// Dados de população de candidatos
-/// Disponível em https://catalog.data.gov/dataset/electric-vehicle-population-data
 /// </summary>
 public record CandidatoPopulacaoDeDados
 {
-    public const string URL = @"https://data.wa.gov/api/views/f6w7-q2d2/rows.csv?accessType=DOWNLOAD";
+    public const string URL = @"";
 
     /// <summary>
     /// Id do candidato
