@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace Provider.CsvReader;
+namespace Provider.ReaderCsv;
 
 public sealed class CachedDataDownloader
 {
