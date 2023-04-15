@@ -173,9 +173,9 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
     - [ ] Broker de mensageria
     - [ ] Banco de dados
 - [ ] Implementação do Provider
-    - [ ] Registro dos candidatos - LEITURA A PARTIR DE UM CSV
-    - [ ] Registro dos eleitores - LEITURA A PARTIR DE UM CSV
-    - [ ] Registro da votação - LEITURA A PARTIR DE UM CSV
+    - [X] Registro dos candidatos - LEITURA A PARTIR DE UM CSV
+    - [X] Registro dos eleitores - LEITURA A PARTIR DE UM CSV
+    - [X] Registro da votação - LEITURA A PARTIR DE UM CSV
     - [ ] Envio da mensagem de início da votação
     - [ ] Geração de votos aleatórios - Número de votos = Número de eleitores com uma variação de 5% pra mais ou pra menos
         - Sugestão: Usar um generator (yield)
