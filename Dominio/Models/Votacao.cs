@@ -27,5 +27,8 @@ namespace Dominio.Models
             Eleitores = new List<Eleitor>();
             Eleitores.AddRange(eleitores);
         }
+
+        public override string ToString() => $"Votação: #{Id} [{Nome}] - {Candidatos.Count} candidatos - {Eleitores.Count} eleitores";
+
     }
 }
