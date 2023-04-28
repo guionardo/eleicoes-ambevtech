@@ -12,6 +12,7 @@ namespace SharedResources.Configuracao
     /// </summary>
     public class Configuracao
     {
+        const string SecretFile = "secrets.txt";
         /// <summary>
         /// BROKER_CONNECTION_STRING
         /// </summary>
@@ -44,8 +45,31 @@ namespace SharedResources.Configuracao
         {
             var value = Environment.GetEnvironmentVariable(env);
             if (string.IsNullOrWhiteSpace(value))
-                throw new ArgumentException($"Variável de ambiente {env} não foi definida ou está vazia");
+            {
+                LoadSecretsFile();
+                value = Environment.GetEnvironmentVariable(env);
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException($"Variável de ambiente {env} não foi definida ou está vazia");
+            }
             return value;
+        }
+
+        /// <summary>
+        /// Loads secrets.txt
+        /// </summary>
+        private static void LoadSecretsFile()
+        {
+            if (!Path.Exists(SecretFile))
+                return;
+
+            foreach (var line in File.ReadAllLines(SecretFile))
+            {
+                var words = line.Split('=', 2).Select(w => w.Trim()).Where(w => !string.IsNullOrWhiteSpace(w)).ToArray();
+                if (words.Length == 2)
+                {
+                    Environment.SetEnvironmentVariable(words[0].Trim(), words[1].Trim());
+                }
+            }
         }
 
     }
