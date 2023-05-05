@@ -1,5 +1,3 @@
-﻿namespace SharedResources.Domain.Models
-{
-    public record TerminoDaVotacao(int IdVotacao);
+﻿namespace SharedResources.Domain.Models;
 
-}
+public record TerminoDaVotacao(int IdVotacao);
