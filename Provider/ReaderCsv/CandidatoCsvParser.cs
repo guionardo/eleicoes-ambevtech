@@ -1,5 +1,6 @@
 ﻿using CsvHelper.Configuration;
 using Dominio.Models;
+using SharedResources.Domain.Models;
 using System.Globalization;
 
 namespace Provider.ReaderCsv;

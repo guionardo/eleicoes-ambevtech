@@ -169,18 +169,18 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
 - [x] Configurações da aplicação
     - [x] Conexão com o broker de mensageria
     - [x] Conexão com o banco de dados
-- [ ] Componentes externos
-    - [ ] Broker de mensageria
-    - [ ] Banco de dados
-- [ ] Implementação do Provider
+- [X] Componentes externos
+    - [X] Broker de mensageria
+    - [X] Banco de dados
+- [X] Implementação do Provider
     - [X] Registro dos candidatos - LEITURA A PARTIR DE UM CSV
     - [X] Registro dos eleitores - LEITURA A PARTIR DE UM CSV
     - [X] Registro da votação - LEITURA A PARTIR DE UM CSV
-    - [ ] Envio da mensagem de início da votação
-    - [ ] Geração de votos aleatórios - Número de votos = Número de eleitores com uma variação de 5% pra mais ou pra menos
+    - [X] Envio da mensagem de início da votação
+    - [X] Geração de votos aleatórios - Número de votos = Número de eleitores com uma variação de 5% pra mais ou pra menos
         - Sugestão: Usar um generator (yield)
-    - [ ] Envio dos votos
-    - [ ] Envio da mensagem de final da votação
+    - [X] Envio dos votos
+    - [X] Envio da mensagem de final da votação
 
 
 

@@ -4,6 +4,7 @@ using Provider.BrokerSender;
 using Provider.Fixtures;
 using Provider.ReaderCsv;
 using SharedResources.Configuracao;
+using SharedResources.Domain.Models;
 using System.Collections.Immutable;
 
 public class Program

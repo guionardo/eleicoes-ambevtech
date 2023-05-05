@@ -1,6 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Dominio.Models;
 using SharedResources.Configuracao;
+using SharedResources.Domain.Models;
+using ZstdSharp.Unsafe;
 
 namespace Counter
 {
@@ -14,6 +15,7 @@ namespace Counter
         {
             _logger = logger;
             _brokerClient = new ServiceBusClient(configuracao.BrokerConnectionString);
+            // TODO: Desacoplar o ServiceBusClient, recebendo-o por composição
             _receiver = _brokerClient.CreateReceiver(configuracao.BrokerQueue);
         }
 
@@ -58,12 +60,6 @@ namespace Counter
                     // Deve ser descartada
                     await _receiver.DeadLetterMessageAsync(message, cancellationToken: cancellationToken);
                 }
-                else
-                {
-                    // Mensagem válida
-                    // Deve ser completada no broker
-                    await _receiver.CompleteMessageAsync(message, cancellationToken);
-                }
 
                 return (corpo, tipo, message);
 
@@ -77,6 +73,11 @@ namespace Counter
                 _logger.LogError("ERRO INESPERADO", exc);
             }
             return ("", TipoMensagemVotacao.MensagemInvalida, null);
+        }
+
+        public async Task AbandonMessageAsync(ServiceBusReceivedMessage? message)
+        {
+            await _receiver.AbandonMessageAsync(message);
         }
     }
 }

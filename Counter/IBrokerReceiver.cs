@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Dominio.Models;
+using SharedResources.Domain.Models;
 
 namespace Counter
 {
@@ -13,6 +13,6 @@ namespace Counter
 
         Task CompleteMessageAsync(ServiceBusReceivedMessage message);
         Task DeadLetterMessageAsync(ServiceBusReceivedMessage message);
-
+        Task AbandonMessageAsync(ServiceBusReceivedMessage? message);
     }
 }

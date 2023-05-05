@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SharedResources.Domain.Models;
 
-namespace SharedResources.Repositories
+namespace SharedResources.Repositories;
+
+public interface IElectionRepository
 {
-    public interface IElectionRepository
-    {
-    }
+    Task<Votacao> GetElectionAsync(int idEleicao);
+    Task SaveElectionAsync(Votacao votacao);
+    Task SaveVoteAsync(Voto voto);
+
+    Task<IEnumerable<Voto>> GetApuracaoAsync(int idEleicao);
+    Task SaveCountAsync(Apuracao apuracao);
 }

@@ -1,6 +1,5 @@
-﻿using Dominio.Models;
-using Provider.ReaderCsv;
-
+﻿using Provider.ReaderCsv;
+using SharedResources.Domain.Models;
 
 namespace Testes.Provider.ReaderCsv;
 

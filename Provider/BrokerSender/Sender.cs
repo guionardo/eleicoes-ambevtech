@@ -1,7 +1,6 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Dominio.Messages;
-using Dominio.Models;
 using SharedResources.Configuracao;
+using SharedResources.Domain.Models;
 using System.Text.Json;
 
 namespace Provider.BrokerSender

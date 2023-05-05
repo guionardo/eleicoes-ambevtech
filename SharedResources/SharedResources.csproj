@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.19.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="secrets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

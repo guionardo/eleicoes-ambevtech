@@ -1,6 +1,6 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
-using Dominio.Models;
+using SharedResources.Domain.Models;
 using System.Collections;
 using System.Globalization;
 

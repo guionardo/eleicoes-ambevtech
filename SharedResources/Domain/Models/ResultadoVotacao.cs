@@ -1,6 +1,6 @@
 ﻿using SharedResources.Validacoes;
 
-namespace Dominio.Models
+namespace SharedResources.Domain.Models
 {
     public class ResultadoVotacao
     {
