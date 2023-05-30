@@ -12,7 +12,7 @@ public class ElectionRepository : IElectionRepository
     private readonly IMongoCollection<Voto> _colVotos;
     private readonly IMongoCollection<Apuracao> _colApuracao;
 
-    public ElectionRepository(Configuracao.Configuracao configuracao, CreateIndexOptions options)
+    public ElectionRepository(Configuracao.Configuracao configuracao)
     {
         _client = new MongoClient(configuracao.DatabaseConnectionString);
         _db = _client.GetDatabase(configuracao.DatabaseName);
@@ -25,9 +25,9 @@ public class ElectionRepository : IElectionRepository
         _colVotacao.Indexes.CreateOne(indexModel);
 
 
-        // Índice para votos
-        var voteIndexModel = new CreateIndexModel<Voto>("{IdEleicao:1,IdEleitor:1}", new CreateIndexOptions { Unique = true });
-        _colVotos.Indexes.CreateOne(voteIndexModel);
+        // Índice para votos        
+        var eleicaoIndexModel = new CreateIndexModel<Voto>("{IdEleicao:1}");
+        _colVotos.Indexes.CreateOne(eleicaoIndexModel);
 
         // Índice para apuração
         var apuracaoIndexModel = new CreateIndexModel<Apuracao>("{IdEleicao:1}", new CreateIndexOptions { Unique = true });

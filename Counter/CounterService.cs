@@ -74,14 +74,17 @@ internal class CounterService : ICounterService
         if (termino is null || termino.IdVotacao == 0)
             throw new JsonException("Término de votação inválido");
 
-        // DONE: Implementar a validação da votão terminada
+        // DONE: Implementar a validação da votação terminada
         var votacao = await _electionRepository.GetElectionAsync(termino.IdVotacao);
         if (votacao is null)
             throw new DataNotFoundException($"Eleição não encontrada [{termino.IdVotacao}]");
 
         // DONE: Implementar a persistência do término da votação
+        votacao.Encerrada = true;
+        await _electionRepository.SaveElectionAsync(votacao);
+
         await ElectionCount(termino.IdVotacao);
-       
+
     }
 
     private async Task ProcessVote(string corpo)
@@ -91,14 +94,12 @@ internal class CounterService : ICounterService
             throw new JsonException("Voto inválido");
 
         // DONE: Implementar a validação do voto
-        var votacao = await _electionRepository.GetElectionAsync(voto.IdEleicao);
-        if (votacao is null)
+        var votacao = await _electionRepository.GetElectionAsync(voto.IdEleicao) ??
             throw new DataNotFoundException($"Eleição não encontrada [{voto.IdEleicao}]");
 
-        // TODO: Implementar verificação se a votação já está encerrada
-
-        if (!votacao.Eleitores.Any(e => e.Id == voto.IdEleitor))
-            throw new DataNotFoundException($"Eleitor não encontrado [{voto.IdEleitor}]");
+        // DONE: Implementar verificação se a votação já está encerrada
+        if (IsVotingComplete(votacao))
+            throw new CounterServiceException($"Eleição já foi encerrada [{votacao}]");
 
         // DONE: Implementar a persistência do voto
         await _electionRepository.SaveVoteAsync(voto);
@@ -111,6 +112,10 @@ internal class CounterService : ICounterService
         }
     }
 
+    private bool IsVotingComplete(Votacao votacao)
+    {
+        return votacao.Encerrada;
+    }
 
     private async Task ElectionCount(int idEleicao)
     {
@@ -119,15 +124,21 @@ internal class CounterService : ICounterService
         var apuracao = new Apuracao(idEleicao);
         foreach (var voto in votos)
         {
+            var idCandidato = "nulo";
+            var candidato = votacao.Candidatos.FirstOrDefault(c => c.Id == voto.IdCandidato);
             if (votacao.Eleitores.Any(e => e.Id == voto.IdEleitor) &&
-                votacao.Candidatos.Any(c => c.Id == voto.IdCandidato))
+                candidato is not null)
             {
-                apuracao.Votos[voto.IdCandidato]++;
+                idCandidato = candidato.ToString();
             }
             else
             {
-                apuracao.Votos[0]++;
+                idCandidato = voto.IdCandidato == 0 ? "branco" : "nulo";
             }
+            if (!apuracao.Votos.ContainsKey(idCandidato))
+                apuracao.Votos[idCandidato] = 0;
+
+            apuracao.Votos[idCandidato]++;
         }
         await _electionRepository.SaveCountAsync(apuracao);
 
@@ -139,6 +150,7 @@ internal class CounterService : ICounterService
         var votacao = JsonSerializer.Deserialize<Votacao>(corpo);
         if (votacao is null || votacao.Id == 0) throw new JsonException("Votação inválida");
 
+        _currentVoteCounting[votacao.Id] = 0;
         // DONE: Implementar a validação da votação
 
         await _electionRepository.SaveElectionAsync(votacao);

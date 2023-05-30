@@ -1,7 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using SharedResources.Configuracao;
+using SharedResources.Domain;
 using SharedResources.Domain.Models;
-using ZstdSharp.Unsafe;
 
 namespace Counter
 {
@@ -19,12 +19,12 @@ namespace Counter
             _receiver = _brokerClient.CreateReceiver(configuracao.BrokerQueue);
         }
 
-        public async Task CompleteMessageAsync(ServiceBusReceivedMessage message)
+        public async Task CompleteMessageAsync(ServiceBusReceivedMessage? message)
         {
             await _receiver.CompleteMessageAsync(message);
         }
 
-        public async Task DeadLetterMessageAsync(ServiceBusReceivedMessage message)
+        public async Task DeadLetterMessageAsync(ServiceBusReceivedMessage? message)
         {
             await _receiver.DeadLetterMessageAsync(message);
         }
@@ -34,19 +34,23 @@ namespace Counter
             try
             {
                 var message = await _receiver.ReceiveMessageAsync(null, cancellationToken);
+                if (message is null)
+                {
+                    return (String.Empty, TipoMensagemVotacao.MensagemInvalida, null);
+                }
 
                 var tipo = TipoMensagemVotacao.MensagemInvalida;
 
                 if (message.ApplicationProperties.TryGetValue("entity", out var entity))
                     switch (entity.ToString())
                     {
-                        case "votacao":
+                        case Consts.TipoMensagemInicio:
                             tipo = TipoMensagemVotacao.Inicio;
                             break;
-                        case "voto":
+                        case Consts.TipoMensagemVoto:
                             tipo = TipoMensagemVotacao.Voto;
                             break;
-                        case "fim":
+                        case Consts.TipoMensagemFim:
                             tipo = TipoMensagemVotacao.Fim;
                             break;
                     }

@@ -16,6 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SharedResources\SharedResources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Fixtures\sample_candidatos.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

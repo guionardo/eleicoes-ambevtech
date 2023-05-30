@@ -11,7 +11,7 @@ internal interface IBrokerReceiver
     /// <returns></returns>
     Task<(string, TipoMensagemVotacao, ServiceBusReceivedMessage?)> ReceiveMessageAsync(CancellationToken cancellationToken);
 
-    Task CompleteMessageAsync(ServiceBusReceivedMessage message);
-    Task DeadLetterMessageAsync(ServiceBusReceivedMessage message);
+    Task CompleteMessageAsync(ServiceBusReceivedMessage? message);
+    Task DeadLetterMessageAsync(ServiceBusReceivedMessage? message);
     Task AbandonMessageAsync(ServiceBusReceivedMessage? message);
 }

@@ -1,19 +1,25 @@
 ﻿using SharedResources.Validacoes;
 
-namespace SharedResources.Domain.Models;
-
-public record Candidato
+namespace SharedResources.Domain.Models
 {
-
-    public int Id { get; private set; }
-    public string Nome { get; private set; }
-
-    public Candidato(int idCandidato, string nome)
+    public class Candidato
     {
-        ModelValidations.ThrowForNotPositiveNumber(idCandidato, "Id do candidato");
-        ModelValidations.ThrowForEmptyString(nome, "Nome do candidato");
+        public int Id { get; }
 
-        Id = idCandidato;
-        Nome = nome;
+        public string Nome { get; }
+
+        public Candidato(int id, string nome)
+        {
+            ModelValidations.ThrowForNotPositiveNumber(id, "Id do candidato");
+            ModelValidations.ThrowForEmptyString(nome, "Nome do candidato");
+
+            Id = id;
+            Nome = nome;
+        }
+
+        public override string ToString()
+        {
+            return $"{Id} {Nome}";
+        }
     }
 }

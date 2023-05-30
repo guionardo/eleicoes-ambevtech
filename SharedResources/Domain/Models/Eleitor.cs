@@ -1,18 +1,20 @@
 ﻿using SharedResources.Validacoes;
 
-namespace SharedResources.Domain.Models;
-
-public record Eleitor
+namespace SharedResources.Domain.Models
 {
-    public int Id { get; private set; }
-    public string Nome { get; private set; }
-
-    public Eleitor(int idEleitor, string nome)
+    public class Eleitor
     {
-        ModelValidations.ThrowForNotPositiveNumber(idEleitor, "Id do eleitor");
-        ModelValidations.ThrowForEmptyString(nome, "Nome do eleitor");
+        public int Id { get; }
 
-        Id = idEleitor;
-        Nome = nome;
+        public string Nome { get; }
+
+        public Eleitor(int id, string nome)
+        {
+            ModelValidations.ThrowForNotPositiveNumber(id, "Id do eleitor");
+            ModelValidations.ThrowForEmptyString(nome, "Nome do eleitor");
+
+            Id = id;
+            Nome = nome;
+        }
     }
 }

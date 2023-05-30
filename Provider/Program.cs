@@ -1,6 +1,4 @@
-﻿using Dominio.Messages;
-using Dominio.Models;
-using Provider.BrokerSender;
+﻿using Provider.BrokerSender;
 using Provider.Fixtures;
 using Provider.ReaderCsv;
 using SharedResources.Configuracao;
@@ -37,7 +35,7 @@ public class Program
         // 2. Coleta de votos
         // 3. Fim da votação
 
-         ProcessElection().Wait();
+        ProcessElection().Wait();
     }
 
     public static void GenerateCsvs(int qtdCandidados, int qtdEleitores)
@@ -95,6 +93,7 @@ public class Program
         var numeroDeVotos = (int)(votacao.Eleitores.Count * 1.1);
         Console.WriteLine($"  + Produção de {numeroDeVotos} votos");
 
+        var tasks = new List<Task>();
         // Envio dos votos
         for (var i = 0; i < numeroDeVotos; i++)
         {
@@ -114,9 +113,9 @@ public class Program
                 idEleitor,
                 idsCandidatos[Random.Shared.Next(idsCandidatos.Length)]);
 
-            await sender.SendAsync(voto);
+            tasks.Add(sender.SendAsync(voto));
         }
-
+        Task.WaitAll(tasks.ToArray());
 
 
         // Envio do encerramento da votação

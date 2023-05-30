@@ -181,6 +181,14 @@ Retornando uma lista de objetos com os candidatos e seus votos recebidos, o(s) c
         - Sugestão: Usar um generator (yield)
     - [X] Envio dos votos
     - [X] Envio da mensagem de final da votação
-
-
-
+- [X] Implementação do Counter (worker)
+    - [X] Conexão com broker
+    - [X] Worker para escuta da fila
+    - [X] Processamento das mensagens
+        - [X] Mensagem de início de votação
+        - [X] Mensagem de voto
+        - [X] Mensagem de fim de votação
+        - [X] Apuração parcial a cada X votos
+- [ ] Implementação da API
+    - [ ] Controller
+       - [ ] GET /votacao/{id_votacao}
