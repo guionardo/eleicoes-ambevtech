@@ -1,13 +1,8 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Dominio.Messages;
-using Dominio.Models;
 using SharedResources.Configuracao;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using SharedResources.Domain;
+using SharedResources.Domain.Models;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Provider.BrokerSender
 {
@@ -22,16 +17,16 @@ namespace Provider.BrokerSender
             _sender = _brokerClient.CreateSender(configuracao.BrokerQueue);
         }
 
-        public async Task Send(Votacao votacao) => await Send(votacao, "votacao");
+        public async Task SendAsync(Votacao votacao) => await SendAsync(votacao, Consts.TipoMensagemInicio);
 
 
-        public async Task Send(Voto voto) => await Send(voto, "voto");
+        public async Task SendAsync(Voto voto) => await SendAsync(voto, Consts.TipoMensagemVoto);
 
 
-        public async Task Send(TerminoDaVotacao termino) => await Send(termino, "termino");
+        public async Task SendAsync(TerminoDaVotacao termino) => await SendAsync(termino, Consts.TipoMensagemFim);
 
 
-        private async Task Send<T>(T obj, string entity)    //TODO: Criar testes unitários com mock do client
+        private async Task SendAsync<T>(T obj, string entity)    //TODO: Criar testes unitários com mock do client
         {
             var json = JsonSerializer.Serialize<T>(obj);
             var message = new ServiceBusMessage(json);

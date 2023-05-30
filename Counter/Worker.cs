@@ -3,19 +3,17 @@ namespace Counter
     public class Worker : BackgroundService
     {
         private readonly ILogger<Worker> _logger;
+        private readonly ICounterService _counterService;
 
-        public Worker(ILogger<Worker> logger)
+        public Worker(ILogger<Worker> logger, ICounterService counterService)
         {
             _logger = logger;
+            _counterService = counterService;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
-                await Task.Delay(1000, stoppingToken);
-            }
+            await _counterService.StartListeningAsync(stoppingToken);
         }
     }
 }

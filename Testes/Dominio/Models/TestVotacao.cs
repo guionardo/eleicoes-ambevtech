@@ -1,9 +1,5 @@
-﻿using Dominio.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SharedResources.Domain.Models;
+using System.Text.Json;
 
 namespace Testes.Dominio.Models
 {
@@ -51,6 +47,30 @@ namespace Testes.Dominio.Models
             {
                 var votacao = new Votacao(1, "Teste", new List<Candidato> { new Candidato(1, "abc") }, null);
             });
+        }
+
+        [Fact]
+        public void TesteDeSerializacaoDeserializacao()
+        {
+            var id = 1;
+            var nome = "Eleição para CTO da AmbevTech";
+            var candidatos = new List<Candidato>
+            {
+                new Candidato(1,"José"),
+                new Candidato(2,"Maria")
+            };
+            var eleitores = new List<Eleitor>
+            {
+                new Eleitor(1,"Joana"),
+                new Eleitor(2,"Juca")
+            };
+            var vot1 = new Votacao(id, nome, candidatos, eleitores);
+
+            var json = JsonSerializer.Serialize(vot1);
+
+            var vot2 = JsonSerializer.Deserialize<Votacao>(json);
+
+            Assert.Equal(vot1.Nome, vot2.Nome);
         }
 
     }

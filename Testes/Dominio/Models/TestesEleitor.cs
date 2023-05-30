@@ -1,4 +1,4 @@
-﻿using Dominio.Models;
+﻿using SharedResources.Domain.Models;
 
 namespace Testes.Dominio.Models;
 public class TestesEleitor
@@ -8,7 +8,7 @@ public class TestesEleitor
     {
         var id = 1;
         var nome = "Maria da Silva";
-        
+
         var eleitor = new Eleitor(id, nome);
     }
 

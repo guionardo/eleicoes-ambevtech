@@ -1,4 +1,4 @@
-﻿using Dominio.Models;
+﻿using SharedResources.Domain.Models;
 
 namespace Testes.Dominio.Models;
 public class TestesCandidato

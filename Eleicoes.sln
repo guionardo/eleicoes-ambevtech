@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dominio", "Dominio\Dominio.csproj", "{595338CC-8278-4C61-ADEF-2EAB5219E87F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Provider", "Provider\Provider.csproj", "{05B5C3A7-54B5-4323-AA93-743232544F03}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Counter", "Counter\Counter.csproj", "{6A82BF98-20F8-4EED-A879-7416FC52C07E}"
@@ -28,10 +26,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{595338CC-8278-4C61-ADEF-2EAB5219E87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{595338CC-8278-4C61-ADEF-2EAB5219E87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{595338CC-8278-4C61-ADEF-2EAB5219E87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{595338CC-8278-4C61-ADEF-2EAB5219E87F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{05B5C3A7-54B5-4323-AA93-743232544F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{05B5C3A7-54B5-4323-AA93-743232544F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05B5C3A7-54B5-4323-AA93-743232544F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
